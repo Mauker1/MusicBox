@@ -30,6 +30,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
 
+import com.asuscomm.mauker.Definitions;
 import com.asuscomm.mauker.control.OperationControlInterface;
 import com.asuscomm.mauker.model.MusicBoxModelInterface;
 
@@ -311,6 +312,9 @@ public class OperationView implements ActionListener {
 		headerLabel.setFont(headerLabel.getFont().deriveFont(Font.BOLD,16));
 		moneyLabel.setFont(headerLabel.getFont().deriveFont(Font.BOLD,16));
 		
+		coinsLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("res/24/coins.png")));
+		cashLabel.setIcon(new ImageIcon(getClass().getClassLoader().getResource("res/24/cash.png")));
+		
 		coinsLabel.setFont(headerLabel.getFont().deriveFont(Font.BOLD,12));
 		cashLabel.setFont(headerLabel.getFont().deriveFont(Font.BOLD,12));
 	}
@@ -372,6 +376,19 @@ public class OperationView implements ActionListener {
 	}
 
 	
+	private void printTotalAmount(){
+		messageArea.append("\nTotal inserido: R$");
+		messageArea.append(control.getTotalMoney());
+		
+		playButton.setEnabled(true);
+	}
+	
+	private void doPlay(){
+		// TODO
+		
+		playButton.setEnabled(false);
+	}
+	
 	/**
 	 * processHierarchy() - Metodo que processa um Array de objetos para montar a arvore.
 	 * @param hierarchy
@@ -414,26 +431,31 @@ public class OperationView implements ActionListener {
 		Object o = e.getSource();
 		
 		if (o.equals(playButton)){
-			// TODO
+			doPlay();
 		}
 		else if (o.equals(_25CentsButton)){
-			control.insertCoin(25);
-			messageArea.append("\nInserido 25 cents!");
+			control.insertCoin(Definitions._25CENTS);
+			printTotalAmount();
 		}
 		else if (o.equals(_50CentsButton)){
-			control.insertCoin(50);
+			control.insertCoin(Definitions._50CENTS);
+			printTotalAmount();
 		}
 		else if (o.equals(_1RealButton)){
-			control.insertCoin(100);
+			control.insertCoin(Definitions._1REAL);
+			printTotalAmount();
 		}
 		else if (o.equals(_2ReaisButton)){
-			control.insertCash(2);
+			control.insertCash(Definitions._2REAIS);
+			printTotalAmount();
 		}
 		else if (o.equals(_5ReaisButton)){
-			control.insertCash(5);
+			control.insertCash(Definitions._5REAIS);
+			printTotalAmount();
 		}
 		else if (o.equals(_10ReaisButton)){
-			control.insertCash(10);
+			control.insertCash(Definitions._10REAIS);
+			printTotalAmount();
 		}
 		else if (o.equals(maintenanceMode)){
 			// TODO

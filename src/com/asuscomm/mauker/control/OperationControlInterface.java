@@ -6,5 +6,8 @@ public interface OperationControlInterface {
 	
 	void insertCoin(int value);
 	void insertCash(int value);
+	void doPlay(String music);
+	
+	String getTotalMoney();
 
 }
