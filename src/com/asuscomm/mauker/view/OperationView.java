@@ -4,6 +4,7 @@ import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.TextArea;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -36,6 +37,7 @@ import com.asuscomm.mauker.model.MusicBoxModelInterface;
 
 public class OperationView implements ActionListener {
 
+	private static final String JUKEBOX_HEADER = "JukeBox! - Versão 1.0";
 	private OperationControlInterface control;
 	private MusicBoxModelInterface model;
 	
@@ -320,7 +322,7 @@ public class OperationView implements ActionListener {
 	}
 	
 	private void createTextArea(){
-		messageArea = new JTextArea("JukeBox! - Versão 1.0");
+		messageArea = new JTextArea(JUKEBOX_HEADER);
 		
 		messageArea.setEditable(false);
 	}
@@ -385,6 +387,8 @@ public class OperationView implements ActionListener {
 	
 	private void doPlay(){
 		// TODO
+		
+		messageArea.setText(JUKEBOX_HEADER);
 		
 		playButton.setEnabled(false);
 	}

@@ -35,13 +35,13 @@ public class OperationControl implements OperationControlInterface {
 	public void insertCoin(int value) {
 		switch (value){
 		case Definitions._25CENTS:
-			
+			model.insert25Cents();
 			break;
 		case Definitions._50CENTS:
-			
+			model.insert50Cents();
 			break;
 		case Definitions._1REAL:
-			
+			model.insert1Real();
 			break;
 		}
 		
@@ -51,13 +51,13 @@ public class OperationControl implements OperationControlInterface {
 	public void insertCash(int value) {
 		switch (value){
 		case Definitions._2REAIS:
-			
+			model.insert2Reais();
 			break;
 		case Definitions._5REAIS:
-			
+			model.insert5Reais();
 			break;		
 		case Definitions._10REAIS:
-			
+			model.insert10Reais();
 			break;
 		}
 		
@@ -70,7 +70,7 @@ public class OperationControl implements OperationControlInterface {
 		int centavos;
 		int total = 0;
 		
-		// TODO: pegar total do model.
+		total = model.getTotalAmount();
 		
 		reais = total / 100;
 		centavos = total % 100;
