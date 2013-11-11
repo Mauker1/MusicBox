@@ -2,12 +2,13 @@ package com.asuscomm.mauker.control;
 
 public interface OperationControlInterface {
 
-	void init(); // Initialize and show GUI.
+	public void init(); // Initialize and show GUI.
 	
-	void insertCoin(int value);
-	void insertCash(int value);
-	void doPlay(String music);
+	public void insertCoin(int value);
+	public void insertCash(int value);
+	public void doPlay(String music);
+	public void resetJukebox();
 	
-	String getTotalMoney();
+	public String getTotalMoney();
 
 }

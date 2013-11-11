@@ -92,4 +92,9 @@ public class OperationControl implements OperationControlInterface {
 		// TODO Auto-generated method stub
 		
 	}
+
+	@Override
+	public void resetJukebox() {
+		model.reset();
+	}
 }

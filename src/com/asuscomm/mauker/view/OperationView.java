@@ -95,6 +95,7 @@ public class OperationView implements ActionListener {
 	private JMenu help;
 	
 	private JMenuItem maintenanceMode;
+	private JMenuItem resetJukeBox;
 	private JMenuItem aboutJukebox;
 	
 	private Object[] hierarchy = {"Musicas",
@@ -365,15 +366,19 @@ public class OperationView implements ActionListener {
 		help = new JMenu("Ajuda");
 		
 		maintenanceMode = new JMenuItem("Módulo de Manutenção");
+		resetJukeBox = new JMenuItem("Reset Jukebox");
 		aboutJukebox = new JMenuItem("Sobre JukeBox!");
 		
 		maintenanceMode.addActionListener(this);
+		resetJukeBox.addActionListener(this);
 		aboutJukebox.addActionListener(this);
 		
 		menuBar.add(file);
 		menuBar.add(help);
 		
 		file.add(maintenanceMode);
+		help.add(resetJukeBox);
+		help.addSeparator();
 		help.add(aboutJukebox);
 	}
 
@@ -463,6 +468,9 @@ public class OperationView implements ActionListener {
 		}
 		else if (o.equals(maintenanceMode)){
 			// TODO
+		}
+		else if (o.equals(resetJukeBox)){
+			control.resetJukebox();
 		}
 		else if (o.equals(aboutJukebox)){
 			// TODO
