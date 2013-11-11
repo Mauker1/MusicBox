@@ -12,8 +12,8 @@ public class Main {
 	public static void main(String args[]){
 		MusicBoxModelInterface model = new MusicBoxModel();
 		
-		
 		OperationControlInterface control = new OperationControl(model);
+		
 		control.init();
 	}
 }
