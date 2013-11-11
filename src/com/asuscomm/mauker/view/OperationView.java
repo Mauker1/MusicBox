@@ -72,6 +72,8 @@ public class OperationView implements ActionListener {
 	private JLabel coinsLabel;
 	private JLabel cashLabel;
 	
+	private JTextArea messageArea;
+	
 	private JButton playButton;
 	
 	private JButton _25CentsButton;
@@ -159,6 +161,7 @@ public class OperationView implements ActionListener {
 		
 		createPanels();
 		createLabels();
+		createTextArea();
 		createButtons();
 		createMenu();
 		
@@ -204,8 +207,7 @@ public class OperationView implements ActionListener {
 		bodyPanel.add(controlPanel);
 		bodyPanel.add(Box.createHorizontalGlue());
 		
-		// TODO: trocar isso aqui para campo private.
-		messagePanel = new JScrollPane(new JTextArea("JukeBox!"));
+		messagePanel = new JScrollPane(messageArea);
 		
 		playPanel.add(Box.createHorizontalGlue());
 		playPanel.add(playButton);
@@ -313,6 +315,12 @@ public class OperationView implements ActionListener {
 		cashLabel.setFont(headerLabel.getFont().deriveFont(Font.BOLD,12));
 	}
 	
+	private void createTextArea(){
+		messageArea = new JTextArea("JukeBox! - Versão 1.0");
+		
+		messageArea.setEditable(false);
+	}
+	
 	private void createButtons(){
 		playButton = new JButton("Play!");
 		_25CentsButton = new JButton("25 cents");
@@ -321,6 +329,15 @@ public class OperationView implements ActionListener {
 		_2ReaisButton = new JButton("2 reais");
 		_5ReaisButton = new JButton("5 reais");
 		_10ReaisButton = new JButton("10 reais");
+		
+		playButton.setFocusable(false);
+		_25CentsButton.setFocusable(false);
+		_50CentsButton.setFocusable(false);
+		_1RealButton.setFocusable(false);
+		_2ReaisButton.setFocusable(false);
+		_5ReaisButton.setFocusable(false);
+		_10ReaisButton.setFocusable(false);
+		
 		
 		playButton.setIcon(new ImageIcon(getClass().getClassLoader().getResource("res/16/play.png")));
 		
@@ -331,6 +348,8 @@ public class OperationView implements ActionListener {
 		_2ReaisButton.addActionListener(this);
 		_5ReaisButton.addActionListener(this);
 		_10ReaisButton.addActionListener(this);
+		
+		playButton.setEnabled(false);
 		
 	}
 	
@@ -398,22 +417,23 @@ public class OperationView implements ActionListener {
 			// TODO
 		}
 		else if (o.equals(_25CentsButton)){
-			// TODO
+			control.insertCoin(25);
+			messageArea.append("\nInserido 25 cents!");
 		}
 		else if (o.equals(_50CentsButton)){
-			// TODO
+			control.insertCoin(50);
 		}
 		else if (o.equals(_1RealButton)){
-			// TODO
+			control.insertCoin(100);
 		}
 		else if (o.equals(_2ReaisButton)){
-			// TODO
+			control.insertCash(2);
 		}
 		else if (o.equals(_5ReaisButton)){
-			// TODO
+			control.insertCash(5);
 		}
 		else if (o.equals(_10ReaisButton)){
-			// TODO
+			control.insertCash(10);
 		}
 		else if (o.equals(maintenanceMode)){
 			// TODO

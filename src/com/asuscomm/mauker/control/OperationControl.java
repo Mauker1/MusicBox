@@ -29,4 +29,16 @@ public class OperationControl implements OperationControlInterface {
 			}
 		});
 	}
+
+	@Override
+	public void insertCoin(int value) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void insertCash(int value) {
+		// TODO Auto-generated method stub
+		
+	}
 }
