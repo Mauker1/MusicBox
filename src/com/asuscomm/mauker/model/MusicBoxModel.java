@@ -1,5 +1,11 @@
 package com.asuscomm.mauker.model;
 
+import java.sql.SQLException;
+import java.util.List;
+import java.util.Vector;
+
+import com.asuscomm.mauker.data.Musica;
+import com.asuscomm.mauker.db.MusicaDAO;
 import com.asuscomm.mauker.exceptions.NotEnoughMoneyException;
 
 public class MusicBoxModel implements MusicBoxModelInterface {
@@ -23,6 +29,8 @@ public class MusicBoxModel implements MusicBoxModelInterface {
 	private int totalChange;
 	
 	private boolean _hasMoneyInserted;
+	
+	private List<Musica> musics;
 	
 	public MusicBoxModel(){
 		reset();
@@ -214,5 +222,19 @@ public class MusicBoxModel implements MusicBoxModelInterface {
 	@Override
 	public void set_10ReaisOnMachine(int _10ReaisOnMachine) {
 		this._10ReaisOnMachine = _10ReaisOnMachine;
+	}
+
+	@Override
+	public Object[] getMusicsTree() {
+		Vector<Object[]> tree;
+		try {
+			musics = MusicaDAO.findAll();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+		return null;
 	}
 } // Fim da classe.

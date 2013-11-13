@@ -24,6 +24,7 @@ public class MusicaDAO {
 		}
     }
     
+
     private static void closeConnection(){
     	try {
     		if (c != null){
@@ -36,7 +37,6 @@ public class MusicaDAO {
     
     public static void insertMusica(Musica music) throws SQLException{
     	StringBuilder sb = new StringBuilder();
-    	
     	openConnection();
     	
     	stmt = c.createStatement();
