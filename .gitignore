@@ -2,3 +2,4 @@
 *.class
 .settings/org.eclipse.ltk.core.refactoring.prefs
 .settings/org.eclipse.mylyn.tasks.ui.prefs
+.classpath
