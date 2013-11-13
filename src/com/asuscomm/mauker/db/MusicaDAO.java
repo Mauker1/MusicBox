@@ -2,6 +2,7 @@ package com.asuscomm.mauker.db;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -39,7 +40,7 @@ public class MusicaDAO {
     
     public static int insertMusica(Musica music) throws SQLException{
     	int ret = 0;
-    	StringBuilder sb = new StringBuilder();
+    	//StringBuilder sb = new StringBuilder();
     	openConnection();
     	c.setAutoCommit(false);
     	
@@ -47,36 +48,25 @@ public class MusicaDAO {
     	
     	// TODO trocar por preparedStatement.
     	
-    	sb.append("INSERT INTO MUSICAS (idCategoria,dsBanda,dsMusica,vrMusica,dsTempo,isAtivo) VALUES (");
-    	sb.append(music.getCategoria());
-    	sb.append(",");
-    	sb.append("'");
-    	sb.append(music.getBanda());
-    	sb.append("'");
-    	sb.append(",");
-    	sb.append("'");
-    	sb.append(music.getNome());
-    	sb.append("'");
-    	sb.append(",");
-    	sb.append(music.getValor());
-    	sb.append(",");
-    	sb.append("'");
-    	sb.append(music.getTempo());
-    	sb.append("'");
-    	sb.append(",");
-    	sb.append(1);
-    	sb.append(");");
     	
-    	sql = sb.toString();
+    	sql = "INSERT INTO MUSICAS (idCategoria,dsBanda,dsMusica,vrMusica,dsTempo,isAtivo) VALUES (?,?,?,?,?,?);";
+    	
+    	//sql = sb.toString();
+    	
+    	PreparedStatement ps = c.prepareStatement(sql);
+    	
+    	ps.setInt(1, music.getCategoria());
+    	ps.setString(2, music.getBanda());
+    	ps.setString(3, music.getNome());
+    	ps.setInt(4, music.getValor());
+    	ps.setString(5, music.getTempo());
+    	ps.setBoolean(6, music.isActive());
+    	
+    	ps.execute();
+    	
+    	ps.close();
     	
     	System.out.println(sql);
-    	
-    	
-    	stmt.execute(sql);
-    	
-    	stmt.close();
-    	
-    	stmt = c.createStatement();
     	
     	ResultSet rs = stmt.executeQuery("SELECT last_insert_rowid()");
     	

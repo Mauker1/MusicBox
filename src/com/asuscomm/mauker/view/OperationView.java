@@ -1,10 +1,8 @@
 package com.asuscomm.mauker.view;
 
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.GridLayout;
-import java.awt.TextArea;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,7 +35,7 @@ import com.asuscomm.mauker.model.MusicBoxModelInterface;
 
 public class OperationView implements ActionListener {
 
-	private static final String JUKEBOX_HEADER = "JukeBox! - Vers„o 1.0";
+	private static final String JUKEBOX_HEADER = "JukeBox! - Vers√£o 1.0";
 	private OperationControlInterface control;
 	private MusicBoxModelInterface model;
 	
@@ -253,8 +251,6 @@ public class OperationView implements ActionListener {
 		mainPanel.add(footerPanel);
 		mainPanel.add(Box.createVerticalStrut(5));
 		
-		//mainFrame.setMaximumSize(new Dimension(200,200));
-		
 		mainFrame.setContentPane(mainPanel);	
 	}
 	
@@ -310,7 +306,7 @@ public class OperationView implements ActionListener {
 		headerLabel = new JLabel("JukeBox!");
 		moneyLabel = new JLabel("Pagamento");
 		coinsLabel = new JLabel("Moedas: ");
-		cashLabel = new JLabel("CÈdulas: ");
+		cashLabel = new JLabel("C√©dulas: ");
 		
 		headerLabel.setFont(headerLabel.getFont().deriveFont(Font.BOLD,16));
 		moneyLabel.setFont(headerLabel.getFont().deriveFont(Font.BOLD,16));
@@ -365,7 +361,7 @@ public class OperationView implements ActionListener {
 		file = new JMenu("Arquivo");
 		help = new JMenu("Ajuda");
 		
-		maintenanceMode = new JMenuItem("MÛdulo de ManutenÁ„o");
+		maintenanceMode = new JMenuItem("M√≥dulo de Manuten√ß√£o");
 		resetJukeBox = new JMenuItem("Reset Jukebox");
 		aboutJukebox = new JMenuItem("Sobre JukeBox!");
 		
