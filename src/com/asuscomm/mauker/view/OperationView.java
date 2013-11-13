@@ -26,14 +26,17 @@ import javax.swing.JTree;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.UnsupportedLookAndFeelException;
+import javax.swing.event.TreeSelectionEvent;
+import javax.swing.event.TreeSelectionListener;
 import javax.swing.tree.DefaultMutableTreeNode;
 import javax.swing.tree.TreePath;
+import javax.swing.tree.TreeSelectionModel;
 
 import com.asuscomm.mauker.Definitions;
 import com.asuscomm.mauker.control.OperationControlInterface;
 import com.asuscomm.mauker.model.MusicBoxModelInterface;
 
-public class OperationView implements ActionListener {
+public class OperationView implements ActionListener, TreeSelectionListener {
 
 	private static final String JUKEBOX_HEADER = "JukeBox! - Versão 1.0";
 	private OperationControlInterface control;
@@ -171,26 +174,9 @@ public class OperationView implements ActionListener {
 		DefaultMutableTreeNode root = processHierarchy(hierarchy);
 		tree = new JTree(root);
 		
-		MouseListener ml = new MouseAdapter() {
-			@Override
-			public void mousePressed(MouseEvent e){
-				final int selRow = tree.getRowForLocation(e.getX(), e.getY());
-				
-				if (selRow != -1){
-					if (e.getButton() == MouseEvent.BUTTON1 && e.getClickCount() == 2){
-						final TreePath path = tree.getPathForLocation(e.getX(), e.getY());
-						new Thread(){
-							@Override
-							public void run(){
-								treeItemSelected(selRow, path);
-							}
-						}.start();
-					}
-				}
-			} // Fim mousePressed()
-		};
+		tree.getSelectionModel().setSelectionMode(TreeSelectionModel.SINGLE_TREE_SELECTION);
 		
-		tree.addMouseListener(ml);
+		tree.addTreeSelectionListener(this);
 		
 		treePanel = new JScrollPane(tree);
 		//treePanel.setPreferredSize(new Dimension(screenSize.width/4,screenSize.height/4));
@@ -389,6 +375,14 @@ public class OperationView implements ActionListener {
 	private void doPlay(){
 		// TODO
 		
+		if (!tree.isSelectionEmpty()){
+			System.out.println(tree.getSelectionPath().getLastPathComponent().toString());
+			if (tree.getSelectionPath().getLastPathComponent() instanceof Object[]){
+				System.out.println("Ramo");
+			}
+		}
+		
+		
 		messageArea.setText(JUKEBOX_HEADER);
 		
 		playButton.setEnabled(false);
@@ -413,23 +407,6 @@ public class OperationView implements ActionListener {
 	    }
 	    return(node);
 	  }
-	
-	/**
-	 * treeItemSelected - Metodo que trata as selecoes da arvore, abrindo as 
-	 * janelas adequadas dentro do JDesktopPane
-	 * @author mauker
-	 * @param selRow - A linha selecionada.
-	 * @param path - O caminho do item selecionado.
-	 */
-	private void treeItemSelected (int selRow, TreePath path){
-		//System.out.println(selRow);
-		//System.out.println(path.getPathComponent(0));
-		
-		//final String scenario = path.getPathComponent(0).toString();
-		String sel = path.getLastPathComponent().toString();
-		
-		System.out.println(sel);
-	}
 	
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -471,6 +448,16 @@ public class OperationView implements ActionListener {
 		else if (o.equals(aboutJukebox)){
 			// TODO
 		}
+	}
+
+	@Override
+	public void valueChanged(TreeSelectionEvent e) {
+		System.out.println(e.getNewLeadSelectionPath().getLastPathComponent());
+		
+		System.out.println(tree.getModel().isLeaf(e.getNewLeadSelectionPath().getLastPathComponent()));
+		
+		
+		// TODO
 	}
 	
 }
