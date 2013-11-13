@@ -45,6 +45,8 @@ public class MusicaDAO {
     	
     	stmt = c.createStatement();
     	
+    	// TODO trocar por preparedStatement.
+    	
     	sb.append("INSERT INTO MUSICAS (idCategoria,dsBanda,dsMusica,vrMusica,dsTempo,isAtivo) VALUES (");
     	sb.append(music.getCategoria());
     	sb.append(",");
