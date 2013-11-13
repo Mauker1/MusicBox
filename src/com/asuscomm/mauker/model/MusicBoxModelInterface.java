@@ -39,6 +39,8 @@ public interface MusicBoxModelInterface {
 	public int get_10ReaisOnMachine();
 	public void set_10ReaisOnMachine(int _10ReaisOnMachine);
 	
+	public Object[] getMusicsTree();
+	
 	public boolean hasMoney();
 	
 }
