@@ -1,5 +1,7 @@
 package com.asuscomm.mauker.data;
 
+import com.google.common.base.Objects;
+
 public class Musica {
 	public static int CATEGORIA_ROCK = 1;
 	public static int CATEGORIA_POP = 2;
@@ -30,6 +32,10 @@ public class Musica {
 	
 	public int getID(){
 		return _id;
+	}
+	
+	public void setID(int ID){
+		_id = ID;
 	}
 	
 	public int getCategoria(){
@@ -64,5 +70,21 @@ public class Musica {
 		return active;
 	}
 	
+	@Override
+	public boolean equals(Object arg0) {
+		if (arg0 == null){
+			return false;
+		}
+		if (arg0.getClass() != getClass()){
+			return false;
+		}
+		
+		final Musica mus = (Musica) arg0;
+		
+		return Objects.equal(this.getID(), mus.getID()) &&
+				Objects.equal(this.getNome(), mus.getNome()) && 
+				Objects.equal(this.getBanda(), mus.getBanda()) &&
+				Objects.equal(this.getCategoria(), mus.getCategoria());
+	}
 	
 }

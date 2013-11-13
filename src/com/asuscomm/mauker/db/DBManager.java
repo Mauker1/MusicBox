@@ -26,18 +26,18 @@ public class DBManager {
 
 			String sql = "CREATE TABLE IF NOT EXISTS `Musicas` (" +
 					"`idMusica` INTEGER PRIMARY KEY AUTOINCREMENT ," +
-					"`idCategoria` INT NOT NULL ," +
+					"`idCategoria` INTEGER NOT NULL ," +
 					"`dsBanda` VARCHAR(45) NULL DEFAULT NULL ," +
 					"`dsMusica` VARCHAR(45) NULL DEFAULT NULL ," +
 					"`vrMusica` INTEGER NULL DEFAULT NULL ," +
 					"`dsTempo` VARCHAR(45) NULL DEFAULT NULL ," +
-					"`isAtivo` BOOLEAN NULL DEFAULT NULL)";
+					"`isAtivo` INTEGER NULL DEFAULT NULL)";
 	      stmt.executeUpdate(sql);
 	      
 	      sql =  "CREATE TABLE IF NOT EXISTS `Musicas_Categorias` (" +
 	    		     "`idMusicaCategoria` INTEGER PRIMARY KEY AUTOINCREMENT ," +
 	    		     "`dsCategoria` VARCHAR(45) NULL DEFAULT NULL ," +
-	    		     "`isAtivo` BOOLEAN NULL DEFAULT NULL)";
+	    		     "`isAtivo` INTEGER NULL DEFAULT NULL)";
 	      
 	      stmt.execute(sql);
 	      
@@ -47,7 +47,7 @@ public class DBManager {
 	    		     "`idMoeda` INTEGER NULL DEFAULT NULL," +
 	    		     "`qtdTroco` FLOAT(8,2) NULL DEFAULT NULL ," +
 	    		     "`dtMusica` TIMESTAMP NULL DEFAULT NULL ," +
-	    		     "`isAtivo` BOOLEAN NULL DEFAULT NULL)";
+	    		     "`isAtivo` INTEGER NULL DEFAULT NULL)";
 	      
 	      stmt.execute(sql);
 	      
@@ -55,7 +55,7 @@ public class DBManager {
 	    		   "`idMoeda` INTEGER PRIMARY KEY AUTOINCREMENT ," +
 	    		   "`tpMoeda` VARCHAR(45) NULL DEFAULT NULL ," +
 	    		   "`vrMoeda` FLOAT(8,2) NULL DEFAULT NULL ," +
-	    		   "`isAtivo` BOOLEAN NULL DEFAULT NULL)";
+	    		   "`isAtivo` INTEGER NULL DEFAULT NULL)";
 	      
 	      stmt.execute(sql);
 	      
