@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Vector;
 
 import com.asuscomm.mauker.data.Musica;
+import com.asuscomm.mauker.db.MusicaDAO;
 import com.asuscomm.mauker.exceptions.NotEnoughMoneyException;
 
 public class MusicBoxModel implements MusicBoxModelInterface {
@@ -225,8 +226,8 @@ public class MusicBoxModel implements MusicBoxModelInterface {
 	@Override
 	public Object[] getMusicsTree() {
 		Vector<Object[]> tree;
+		musics = MusicaDAO.findAll();
 		
-		// TODO
 		
 		return null;
 	}

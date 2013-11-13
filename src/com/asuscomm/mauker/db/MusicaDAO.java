@@ -9,10 +9,10 @@ import java.util.List;
 import com.asuscomm.mauker.data.Musica;
 
 public class MusicaDAO {
-	private Connection c = null;
-    private Statement stmt = null;
+	private static Connection c = null;
+    private static Statement stmt = null;
     
-    private void openConnection(){
+    private static void openConnection(){
     	try {
         	Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:jukebox.db");
@@ -23,19 +23,19 @@ public class MusicaDAO {
 		}
     }
     
-    public void insertMusica(){
+    public static void insertMusica(){
     	openConnection();
     }
     
-    public void updateMusica(){
+    public static void updateMusica(){
     	openConnection();
     }
     
-    public void deleteMusica(){
+    public static void deleteMusica(){
     	openConnection();
     }
     
-    public Musica findMusic(String name){
+    public static Musica findMusic(String name){
     	openConnection();
     	
     	Musica music = null;
@@ -45,7 +45,7 @@ public class MusicaDAO {
     	return music;
     }
     
-    public List<Musica> findAll(){
+    public static List<Musica> findAll(){
     	openConnection();
     	
     	List<Musica> musics  = null;
