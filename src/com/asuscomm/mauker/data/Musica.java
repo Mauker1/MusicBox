@@ -11,17 +11,21 @@ public class Musica {
 	private String nome;
 	private String banda;
 	private int valor;
+	private String tempo;
+	private boolean active;
 	
 	public Musica(){
 		
 	}
 	
-	public Musica(int id, int categoria, String nome, String banda, int valor){
+	public Musica(int id, int categoria, String nome, String banda, int valor, String tempo, boolean active){
 		this._id = id;
 		this.categoria = categoria;
 		this.nome = nome;
 		this.banda = banda;
 		this.valor = valor;
+		this.tempo = tempo;
+		this.active = active;
 	}
 	
 	public int getID(){
@@ -42,6 +46,22 @@ public class Musica {
 	
 	public int getValor(){
 		return valor;
+	}
+
+	public void setTempo(String tempo){
+		this.tempo = tempo;
+	}
+	
+	public String getTempo() {
+		return tempo;
+	}
+	
+	public void setActive(boolean active){
+		this.active = active;
+	}
+
+	public boolean isActive() {
+		return active;
 	}
 	
 	

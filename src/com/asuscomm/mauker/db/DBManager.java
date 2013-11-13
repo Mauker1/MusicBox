@@ -27,9 +27,9 @@ public class DBManager {
 			String sql = "CREATE TABLE IF NOT EXISTS `Musicas` (" +
 					"`idMusica` INTEGER PRIMARY KEY AUTOINCREMENT ," +
 					"`idCategoria` INT NOT NULL ," +
-					"`dsCantor` VARCHAR(45) NULL DEFAULT NULL ," +
+					"`dsBanda` VARCHAR(45) NULL DEFAULT NULL ," +
 					"`dsMusica` VARCHAR(45) NULL DEFAULT NULL ," +
-					"`vrMusica` VARCHAR(45) NULL DEFAULT NULL ," +
+					"`vrMusica` INTEGER NULL DEFAULT NULL ," +
 					"`dsTempo` VARCHAR(45) NULL DEFAULT NULL ," +
 					"`isAtivo` BOOLEAN NULL DEFAULT NULL)";
 	      stmt.executeUpdate(sql);

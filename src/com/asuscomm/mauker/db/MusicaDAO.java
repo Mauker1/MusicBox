@@ -9,10 +9,11 @@ import java.util.List;
 import com.asuscomm.mauker.data.Musica;
 
 public class MusicaDAO {
-	private Connection c = null;
-    private Statement stmt = null;
+	private static Connection c = null;
+    private static Statement stmt = null;
+    private static String sql = null;
     
-    private void openConnection(){
+    private static void openConnection(){
     	try {
         	Class.forName("org.sqlite.JDBC");
 			c = DriverManager.getConnection("jdbc:sqlite:jukebox.db");
@@ -23,32 +24,79 @@ public class MusicaDAO {
 		}
     }
     
-    public void insertMusica(){
-    	openConnection();
+    private static void closeConnection(){
+    	try {
+    		if (c != null){
+				c.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
     }
     
-    public void updateMusica(){
+    public static void insertMusica(Musica music) throws SQLException{
+    	StringBuilder sb = new StringBuilder();
+    	
     	openConnection();
+    	
+    	stmt = c.createStatement();
+    	
+    	sb.append("INSERT INTO MUSICAS (idCategoria,dsBanda,dsMusica,vrMusica,dsTempo,isAtivo) VALUES (");
+    	sb.append(music.getCategoria());
+    	sb.append(",");
+    	sb.append(music.getBanda());
+    	sb.append(",");
+    	sb.append(music.getNome());
+    	sb.append(",");
+    	sb.append(music.getValor());
+    	sb.append(",");
+    	sb.append(music.getTempo());
+    	sb.append(",");
+    	sb.append(music.isActive());
+    	sb.append(");");
+    	
+    	sql = sb.toString();
+    	
+    	stmt.execute(sql);
+    	
+    	stmt.close();
+    	
+    	c.commit();
+    	
+    	closeConnection();
     }
     
-    public void deleteMusica(){
+    public static void updateMusica(){
     	openConnection();
+    	
+    	closeConnection();
     }
     
-    public Musica findMusic(String name){
+    public static void deleteMusica(){
+    	openConnection();
+    	
+    	closeConnection();
+    }
+    
+    public static Musica findMusic(String name){
     	openConnection();
     	
     	Musica music = null;
     	
     	// TODO
     	
+    	closeConnection();
+    	
     	return music;
     }
     
-    public List<Musica> findAll(){
+    public static List<Musica> findAll() throws SQLException{
     	openConnection();
-    	
+
     	List<Musica> musics  = null;
+    	
+    	sql = "SELECT * from MUSICAS;";
+    	    	
     	
     	// TODO
     	
