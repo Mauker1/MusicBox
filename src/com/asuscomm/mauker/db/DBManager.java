@@ -21,7 +21,16 @@ public class DBManager {
     }
     
     public static void createTables(){
-    	
+    	try {
+			stmt = c.createStatement();
+			// TODO
+			String sql = "CREATE TABLE "; 
+	      stmt.executeUpdate(sql);
+	      stmt.close();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	      
     }
     
     public static void closeConnection(){
